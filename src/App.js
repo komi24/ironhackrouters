@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/home';
+import ErrorPage from './components/ErrorPage';
+import About from './components/About';
+import Navbar from './components/Navbar';
+import {projects as Projects}  from './components/Projects';
+import ProjectDetails from './components/ProjectDetails';
+import NavbarVideo from './components/NavbarVideo';
+import Video from './components/Video';
+import { Switch, Route } from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        
+        <Switch>
+          <Route path='/video' component={NavbarVideo}/>
+          <Route path='/' component={Navbar}/>
+        </Switch>
+
+
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/about' component={About}/>
+          <Route path='/video' component={Video}/>
+          <Route exact path='/projects' component={Projects}/>
+          <Route exact path="/projects/:id" component={ProjectDetails} />
+          <Route path='/' component={ErrorPage}/>
+        </Switch>
       </div>
     );
   }
